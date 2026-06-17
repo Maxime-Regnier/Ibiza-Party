@@ -143,6 +143,34 @@
     </div>
 </div>
     </section>
+    <!-- BILLETTERIE -->
+     <section id="billetterie">
+        <h2>Réserver un billet</h2>
+        <div class="billetterie-container">
+            <form id="ticket-form">
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Votre email" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticket">Type de billet</label>
+                    <select id="ticket" name="ticket" required>
+                        <option value="">-- Choisir un billet --</option>
+                        <option value="1jour">Pass 1 Jour</option>
+                        <option value="vip">Pass VIP</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Valider ma réservation</button>
+            </form>
+            <div id="confirmation-message" style="display:none;">
+                <p>Votre réservation a bien été prise en compte.</p>
+            </div>
+        </div>
+     </section>
     <footer>
 <p>© 2027 Ibiza Party - Projet fictif réalisé dans le cadre de Holberton School.</p>
     </footer>
