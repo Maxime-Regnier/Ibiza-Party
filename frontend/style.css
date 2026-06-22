@@ -9,11 +9,6 @@ body {
     background-color: #0a0a0a;
     color: #ffffff;
 }
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #0a0a0a;
-    color: #ffffff;
-}
 /* ===== NAVIGATION ===== */
 #navbar {
     position: fixed;
@@ -76,7 +71,7 @@ body {
     background: linear-gradient(135deg, #0a0a0a, #1a0033, #0d0020);
     z-index: 0;
 }
-.hero-noice {
+.hero-noise {
     position: absolute;
     top: 0;
     left: 0;
