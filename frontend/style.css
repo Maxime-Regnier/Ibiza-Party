@@ -142,3 +142,33 @@ body {
     opacity: 0.85;
     transform: scale(1.05);
 }
+
+/* ===== COUNTDOWN ===== */
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 20px;
+    background: #0d0020;
+}
+.countdown-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.count {
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff00cc, #9900ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+.legend {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #aaaaaa;
+}
