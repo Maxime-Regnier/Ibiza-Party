@@ -172,3 +172,52 @@ body {
     letter-spacing: 3px;
     color: #aaaaaa;
 }
+
+/* ===== LINE-UP ===== */
+#line-up {
+    padding: 100px 40px;
+    background: #0a0a0a;
+    text-align: center;
+}
+#line-up h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, #ff00cc, #9900ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.lineup-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.dj-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 0, 204, 0.2);
+    border-radius: 15px;
+    padding: 30px 20px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+.dj-card:hover {
+    transform: translateY(-5px);
+    border-color: #ff00cc;
+}
+.dj-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff00cc, #9900ff);
+    margin: 0 auto 20px auto;
+}
+.dj-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
