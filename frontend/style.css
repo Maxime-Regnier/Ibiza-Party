@@ -241,3 +241,63 @@ header {
     letter-spacing: 2px;
     color: #ffffff;
 }
+/* ===== À PROPOS ===== */
+#about {
+    padding: 100px 40px;
+    background: #0d0020;
+}
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.about-text {
+    flex: 1;
+}
+.about-text h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #ff00cc, #9900ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.about-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #cccccc;
+    margin-bottom: 20px;
+}
+.about-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.about-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 0, 204, 0.2);
+    border-radius: 15px;
+    padding: 25px 40px;
+}
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff00cc, #9900ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.stat-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #aaaaaa;
+    margin-top: 5px;
+}
