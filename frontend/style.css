@@ -348,3 +348,40 @@ header {
     color: #cccccc;
     line-height: 1.6;
 }
+.dj-card-b3b {
+    grid-column: span 3;
+}
+.dj-trio {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.dj-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.dj-trio .dj-photo {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 10px auto;
+}
+.b3b-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #ff00cc;
+    border: 1px solid #ff00cc;
+    border-radius: 20px;
+    padding: 3px 12px;
+    margin-bottom: 10px;
+}
+.b3b-separator {
+    font-size: 1.5rem;
+    color: #ff00cc;
+    font-weight: 900;
+}
