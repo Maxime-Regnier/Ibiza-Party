@@ -42,3 +42,16 @@ document.getElementById("ticket-form").addEventListener("submit", function(event
         console.error("Erreur:", error);
     });
 });
+
+const date = document.getElementById("date");
+date.textContent = new Date().getFullYear();
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", function() {
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+
+        this.classList.add("active");
+        document.getElementById(this.dataset.day).classList.add("active");
+    });
+});
