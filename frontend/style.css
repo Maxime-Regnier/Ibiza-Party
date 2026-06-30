@@ -253,6 +253,7 @@ header {
     margin: 0 auto;
 }
 
+
 .dj-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 0, 204, 0.2);
@@ -272,6 +273,13 @@ header {
     border-radius: 50%;
     background: linear-gradient(135deg, #ff00cc, #9900ff);
     margin: 0 auto 20px auto;
+}
+
+.dj-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .dj-card h3 {
@@ -305,6 +313,9 @@ header {
     width: 55px;
     height: 55px;
     margin: 0 auto 10px auto;
+}
+.dj-card-before {
+    grid-column: span 3;
 }
 
 .b3b-tag {
@@ -523,15 +534,6 @@ header {
     color: #ffffff;
     margin-top: 20px;
 }
-#confirmation-message {
-    padding: 30px;
-    background: rgba(255, 0, 204, 0.1);
-    border: 1px solid #ff00cc;
-    border-radius: 15px;
-    font-size: 1.1rem;
-    color: #ffffff;
-    margin-top: 20px;
-}
 /* ===== FOOTER ===== */
 footer {
     background: #000000;
@@ -615,4 +617,53 @@ footer p {
     .infos-grid {
         grid-template-columns: 1fr;
     }
+}
+
+@media (max-width:768px){
+
+.lineup-tabs{
+    flex-direction:column;
+    align-items:center;
+}
+
+.tab-btn{
+    width:220px;
+}
+
+}
+
+/* ===== TABS LINEUP ===== */
+.lineup-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.tab-btn {
+    padding: 12px 35px;
+    border: 1px solid rgba(255, 0, 204, 0.4);
+    border-radius: 25px;
+    background: transparent;
+    color: #aaaaaa;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #ff00cc, #9900ff);
+    color: #ffffff;
+    border-color: transparent;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
 }
