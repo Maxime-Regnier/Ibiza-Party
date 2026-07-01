@@ -4,54 +4,101 @@ function updateCountdown() {
     const now = new Date();
     const diff = eventDate - now;
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    if (diff <= 0) return;
 
-    document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours;
-    document.getElementById("minutes").textContent = minutes;
-    document.getElementById("seconds").textContent = seconds;
+    document.getElementById("days").textContent =
+        Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    document.getElementById("hours").textContent =
+        Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    document.getElementById("minutes").textContent =
+        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById("seconds").textContent =
+        Math.floor((diff % (1000 * 60)) / 1000);
 }
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-document.getElementById("ticket-form").addEventListener("submit", function(event) {
+function showReservationSuccess() {
+
+    const form = document.getElementById("ticket-form");
+    const confirmation = document.getElementById("confirmation-message");
+
+    console.log(form);
+    console.log(confirmation);
+
+    form.style.display = "none";
+    confirmation.classList.add("show");
+}
+
+const form = document.getElementById("ticket-form");
+
+form.addEventListener("submit", async function (event) {
     event.preventDefault();
+
+    const submitButton = form.querySelector("button[type='submit']");
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Envoi en cours...";
+
     const data = {
         nom: document.getElementById("nom").value,
         prenom: document.getElementById("prenom").value,
         email: document.getElementById("email").value,
         ticket: document.getElementById("ticket").value
     };
-    fetch("http://127.0.0.1:5000/tickets", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-        document.getElementById("ticket-form").style.display = "none";
-        document.getElementById("confirmation-message").style.display = "block";
-    })
-    .catch(error => {
-        console.error("Erreur:", error);
-    });
+
+    console.log("Données envoyées :", data);
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/tickets", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        console.log("Status :", response.status);
+
+        const result = await response.text();
+
+        console.log("Réponse backend :", result);
+
+        if (!response.ok) {
+            throw new Error(result);
+        }
+
+        console.log("Avant showReservationSuccess");
+showReservationSuccess();
+console.log("Après showReservationSuccess");
+
+    } catch (error) {
+        console.error("Erreur :", error);
+
+        alert("Impossible d'enregistrer la réservation.");
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Valider ma réservation";
+    }
 });
 
-const date = document.getElementById("date");
-date.textContent = new Date().getFullYear();
+document.getElementById("date").textContent = new Date().getFullYear();
 
-document.querySelectorAll(".tab-btn").forEach(btn => {
-    btn.addEventListener("click", function() {
-        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-        document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+const buttons = document.querySelectorAll(".tab-btn");
+const contents = document.querySelectorAll(".tab-content");
 
-        this.classList.add("active");
-        document.getElementById(this.dataset.day).classList.add("active");
+buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const target = btn.dataset.day;
+
+        buttons.forEach(b => b.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+
+        btn.classList.add("active");
+        document.getElementById(target).classList.add("active");
     });
 });
