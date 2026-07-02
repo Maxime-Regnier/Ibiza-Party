@@ -234,6 +234,11 @@ header {
     text-align: center;
 }
 
+#line-up {
+  position: relative;
+  min-height: 1200px; /* important pour éviter disparition */
+}
+
 #line-up h2 {
     font-size: 3rem;
     font-weight: 900;
@@ -354,6 +359,7 @@ header {
 
 .about-text {
     flex: 1;
+    text-align: center;
 }
 
 .about-text h2 {
@@ -534,6 +540,22 @@ header {
     color: #ffffff;
     margin-top: 20px;
 }
+
+.reservation-message {
+    display: none;
+    margin-top: 20px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.reservation-message--error {
+    display: block;
+    background: rgba(255, 70, 70, 0.12);
+    border: 1px solid #ff4646;
+    color: #ffffff;
+}
 /* ===== FOOTER ===== */
 footer {
     background: #000000;
@@ -665,5 +687,34 @@ footer p {
 }
 
 .tab-content.active {
+    display: block;
+}
+
+.tab-content {
+  display: none;
+  opacity: 0;
+  transform: rotateY(90deg) scale(0.95);
+  transition: all 0.6s ease;
+}
+
+.tab-content.active {
+  display: block;
+  opacity: 1;
+  transform: rotateY(0deg) scale(1);
+}
+
+#confirmation-message {
+    display: none;
+    padding: 30px;
+    margin-top: 20px;
+    text-align: center;
+    background: rgba(0, 255, 100, 0.15);
+    border: 2px solid #00ff88;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+#confirmation-message.show {
     display: block;
 }
