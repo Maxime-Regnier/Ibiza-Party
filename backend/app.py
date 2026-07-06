@@ -191,7 +191,7 @@ def check_admin():
 
 @app.route("/tickets", methods=["POST"])
 def create_ticket():
-    data = request.get_json(silent=True)
+    data = request.get_json()
     error = validate_ticket(data)
 
     if error:
