@@ -190,15 +190,12 @@ def check_admin():
 
 
 @app.route("/tickets", methods=["POST"])
-
 def create_ticket():
     data = request.get_json(silent=True)
     error = validate_ticket(data)
 
     if error:
         return jsonify({"error": error}), 400
-
-
 
     ticket_type = TICKETS[data["ticket"]]
     dates = get_dates(data["ticket"])
