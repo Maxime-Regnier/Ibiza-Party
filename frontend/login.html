@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion Admin</title>    
+    <link rel="stylesheet" href="/login.css">
+    
+</head>
+<body>
+<div class="login-card">
+    <img src="/image/logo.webp" alt="Ibiza Party">
+<h1>Connexion administrateur</h1>
+
+
+        <p>Connexion sécurisée</p>
+<input type="password" id="password" placeholder="Mot de passe">
+
+<button onclick="login()">Se connecter</button>
+
+        <p id="error"></p>
+
+    </div>
+<script>
+async function login() {
+
+    const password = document.getElementById("password").value;
+
+    const response = await fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ password })
+    });
+
+    if (response.ok) {
+        window.location = "/admin";
+    } else {
+        document.getElementById("error").textContent =
+        alert("Mot de passe incorrect");
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,23 +1,34 @@
 import json
 import os
 import smtplib
-from flask import Flask, request, jsonify
 from flask_cors import CORS
 from email.mime.text import MIMEText
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
+from flask import Flask, send_from_directory, request, jsonify, session
+from datetime import datetime
+from reportlab.lib.utils import ImageReader
 
-app = Flask(__name__)
-CORS(app)
+
+
+app = Flask(__name__, static_folder="../frontend")
+app.secret_key = "huber58:grrignaud"
+
+
+CORS(app, supports_credentials=True)
+
 
 DATA_FILE = "data.json"
 REQUIRED_FIELDS = ["nom", "prenom", "email", "ticket"]
+
+ADMIN_PASSWORD = "Ibiza2027"
+
 TICKETS = {
     "1jour": "Pass 1 jour",
     "2jours": "Pass 2 jours",
-    "3jours": "Pass jours complets",
+    "3jours": "Pass 3 jours",
     "vip": "Pass VIP"
 } 
 
@@ -43,7 +54,8 @@ def create_ticket_pdf(nom, prenom, ticket, dates):
     filename = f"Billet_{nom}_{prenom}.pdf"
 
     pdf = canvas.Canvas(filename, pagesize=A4)
-
+    logo = ImageReader("logo.webp")
+    pdf.drawImage(logo, 240, 700, width=120, height=120, mask='auto')
     pdf.setFont("Helvetica-Bold", 24)
     pdf.drawString(150, 800, "IBIZA PARTY 2027")
 
@@ -108,13 +120,13 @@ Merci et à bientôt !
 
     
 def get_dates(ticket):
-    if ticket == "Pass 1 jour":
+    if ticket == "1jour":
         return "24 juin 2027"
-    elif ticket == "Pass 2 jours":
+    elif ticket == "2jours":
         return "24 et 25 juin 2027"
-    elif ticket == "Pass jours complets":
+    elif ticket == "3jours":
         return "24, 25 et 26 juin 2027"
-    elif ticket == "Pass VIP":
+    elif ticket == "vip":
         return "24, 25 et 26 juin 2027"
     else:
         return ticket
@@ -122,13 +134,59 @@ def get_dates(ticket):
 
 
 
+@app.route("/")
+def home():
+    return send_from_directory("../frontend", "login.html")
 
 
+@app.route("/admin")
+def admin_page():
+    return send_from_directory("../frontend", "admin.html")
+
+@app.route("/admin.css")
+def admin_css():
+    return send_from_directory("../frontend", "admin.css")
 
 
+@app.route("/admin.js")
+def admin_js():
+    return send_from_directory("../frontend", "admin.js")
 
 
+@app.route("/style.css")
+def style_css():
+    return send_from_directory("../frontend", "style.css")
 
+
+@app.route("/script.js")
+def script_js():
+    return send_from_directory("../frontend", "script.js")
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.get_json()
+
+    if not data or "password" not in data:
+        return jsonify({"error": "Mot de passe manquant"}), 400
+    if data["password"] == ADMIN_PASSWORD:
+        session["admin"] = True
+        return jsonify({"success": True}), 200
+
+    return jsonify({"error": "Mot de passe incorrect"}), 401
+
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.pop("admin", None)
+    return jsonify({"success": True})
+
+
+@app.route("/check-admin", methods=["GET"])
+def check_admin():
+    if session.get("admin"):
+        return jsonify({"connected": True})
+
+    return jsonify({"connected": False}), 401
 
 
 @app.route("/tickets", methods=["POST"])
@@ -143,7 +201,7 @@ def create_ticket():
 
 
     ticket_type = TICKETS[data["ticket"]]
-    dates = get_dates(ticket_type)
+    dates = get_dates(data["ticket"])
 
 
     reservation = {
@@ -151,7 +209,9 @@ def create_ticket():
         "prenom": data["prenom"].strip(),
         "email": data["email"].strip(),
         "ticket": TICKETS[data["ticket"]],
-        "dates": dates
+        "dates": dates,
+        "date_reservation": datetime.now().strftime("%d/%m/%Y à %H:%M")
+
 
     
     
@@ -194,17 +254,27 @@ def create_ticket():
 
 @app.route("/tickets", methods=["GET"])
 def get_tickets():
+    
+    if not session.get("admin"):
+        return jsonify({"error": "Accès interdit"}), 401
+    
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r", encoding="utf-8") as file:
             reservations = json.load(file)
     else:
         reservations = []
 
-    return jsonify(reservations)
+    return jsonify(list(reversed(reservations)))
+
+
+
+
+@app.route("/image/<path:filename>")
+def images(filename):
+    return send_from_directory("../frontend/image", filename)
+
+
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
