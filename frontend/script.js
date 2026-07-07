@@ -107,6 +107,27 @@ buttons.forEach(btn => {
 
 
 
+// -------------------------
+// Menu mobile
+// -------------------------
+
+const menuBtn = document.getElementById("menu-btn");
+const navbar = document.getElementById("navbar");
+
+if (menuBtn && navbar) {
+    menuBtn.addEventListener("click", () => {
+
+        navbar.classList.toggle("active");
+
+        if (navbar.classList.contains("active")) {
+            menuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        } else {
+            menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        }
+    });
+}
+
+
 const photo = document.getElementById("photo");
 
 window.addEventListener("scroll", () => {
