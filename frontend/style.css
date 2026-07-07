@@ -35,11 +35,21 @@ header {
     padding: 15px 40px;
 }
 
+
+#navbar.active {
+    display: block;
+}
+
 .nav-logo {
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
+.nav-logo img {
+    width:160px;
+}
+
 
 .nav-logo span {
     font-size: 1.2rem;
@@ -141,8 +151,7 @@ header {
 
 .hero-title img {
     width: 800px;
-    height: 523px;
-    aspect-ratio: 1;
+    height: auto;
 }
 
 .title-ibiza {
@@ -314,7 +323,7 @@ header {
 
 .dj-card-b3b {
     grid-column: span 3;
-    margin-bottom: 2rem;
+    margin-bottom: 80px;
 }
 
 .dj-trio {
@@ -358,6 +367,98 @@ header {
     font-size: 1.5rem;
     color: #ff00cc;
     font-weight: 900;
+}
+
+
+@media(max-width:768px){
+
+    .dj-card-b3b {
+        margin-bottom: 100px;
+    }
+
+    .dj-card-before {
+        margin-bottom: 100px;
+    }
+
+    .b3b-separator {
+        margin-top: 60px;
+        margin-bottom: 40px;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .dj-card {
+        margin-bottom: 60px;
+    }
+
+}
+
+@media(max-width:768px){
+#line-up {
+    padding: 50px 15px;
+    min-height: auto;
+}
+
+#line-up h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+}
+
+
+/* Boutons dates */
+
+.lineup-tabs {
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.tab-btn {
+    width: 200px;
+    padding: 10px 20px;
+    font-size: 0.8rem;
+}
+
+
+/* Carte DJ */
+
+.dj-card {
+    padding: 25px 15px;
+    border-radius: 20px;
+    max-width: 350px;
+    margin: 0 auto 60px auto;
+}
+
+
+
+
+/* Groupe DJ */
+
+.dj-trio {
+    gap: 10px;
+    justify-content: center;
+}
+
+
+.dj-trio .dj-photo {
+    width: 80px;
+    height: 80px;
+}
+
+
+.dj-member {
+    width: 90px;
+}
+
+
+.dj-card h3 {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
 }
 
 /* ===== À PROPOS ===== */
@@ -622,10 +723,7 @@ footer p {
 /* Responsive téléphone */
 @media (max-width: 768px) {
 
-    header {
-        flex-direction: column;
-        padding: 15px;
-    }
+
 
     #navbar {
         width: 100%;
@@ -797,4 +895,79 @@ footer p {
     border-radius: 15px;
     padding: 25px;
     backdrop-filter: blur(10px);
+}
+
+#menu-btn{
+    display:none;
+}
+
+@media (max-width:768px){
+
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+        flex-direction: row;
+        padding:15px 20px;
+    }
+
+
+
+#menu-btn {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#navbar {
+    display: none;
+    position: absolute;
+    top:80px;
+    left:0;
+    width:100%;
+    background:#000;
+    z-index:2000;
+}
+
+#navbar.active {
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.hero-title img {
+    width: 220px;
+    height: auto;
+}
+
+.hero-date-tag {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    margin-top: 20px;
+}
+
+.hero-slogo {
+    font-size: 0.8rem;
+    padding: 0 20px;
+}
+
+#hero {
+    height: auto;
+    min-height: 700px;
+    padding: 40px 0;
+}
+
+    .hero-bg {
+        background-position: center center;
+    }
+
 }
