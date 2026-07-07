@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #ff00cc;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px rgba(255,0,204,.5);
+}
+
+#tickets {
+    max-width: 900px;
+    margin: auto;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,0,204,0.25);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(255,0,204,.4);
+}
+
+.card p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.card strong {
+    color: #ff00cc;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: rgba(255,255,255,.15);
+    margin-top: 15px;
+}
+
+.btn {
+    background: linear-gradient(135deg, #ff00cc, #9900ff);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px #ff00cc;
+}
+
+
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.social-links a {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,0,204,.25);
+    color: white;
+    font-size: 28px;
+    transition: .3s;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background: linear-gradient(135deg, #ff00cc, #9900ff);
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 0 15px rgba(255,0,204,.5);
+}
