@@ -13,7 +13,8 @@ body{
 }
 
 .login-card{
-    width:420px;
+    width: 90%;
+    max-width: 420px;
     padding:45px;
 
     background:rgba(255,255,255,.06);
@@ -83,4 +84,10 @@ body{
 #error{
     color:#ff5555;
     margin-top:20px;
+}
+
+@media (max-width: 480px){
+    .login-card{
+        padding: 30px 25px;
+    }
 }
