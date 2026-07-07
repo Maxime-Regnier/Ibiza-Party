@@ -56,8 +56,7 @@ def create_ticket_pdf(nom, prenom, ticket, dates):
     pdf = canvas.Canvas(filename, pagesize=A4)
     logo = ImageReader("logo.webp")
     pdf.drawImage(logo, 240, 700, width=120, height=120, mask='auto')
-    pdf.setFont("Helvetica-Bold", 24)
-    pdf.drawString(150, 800, "IBIZA PARTY 2027")
+
 
     pdf.setFont("Helvetica", 16)
     pdf.drawString(50, 740, f"Nom : {nom}")
@@ -157,6 +156,11 @@ def admin_js():
 def style_css():
     return send_from_directory("../frontend", "style.css")
 
+
+
+@app.route("/login.css")
+def login_css():
+    return send_from_directory("../frontend", "login.css")
 
 @app.route("/script.js")
 def script_js():
